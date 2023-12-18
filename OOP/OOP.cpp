@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 
@@ -22,13 +21,64 @@ private:
 
 int main()
 {
-    clockType myClock;
-    clockType yourClock;
- 
+    clockType myClock; //class object 1
+    clockType yourClock; //class object 2
+
+    int hours;
+    int minutes;
+    int seconds;
+
+    myClock.setTime(5, 4, 30);
+
+    cout << "myClock: ";
+    myClock.printTime();
+    cout << endl;
+
+    cout << "yourClock: ";
+    yourClock.printTime();
+    cout << endl;
+
+    yourClock.setTime(5, 45, 16);
+
+    cout << "After setting, yourClock: ";
+    yourClock.printTime();
+    cout << endl;
+
+    if (myClock.equalTime(yourClock))
+        cout << "Both times are equal." << endl;
+    else
+        cout << "The two times are not equla" << endl;
+
+    cout << "Enter the hours, minutes, and seconds: ";
+    cin >> hours >> minutes >> seconds;
+    cout << endl;
+
+    //Set the time of myClock using the value of the variables hours, minutes, and seconds
+    
+    myClock.setTime(hours, minutes, seconds);
+
+    cout << "New myClock: ";
+    myClock.printTime();
+    cout << endl;
+
+    //Increment the time of myClock by one second
+    myClock.incrementSeconds();
+
+    cout << "After incrementing myclock by one second, myclock: ";
+    myClock.printTime();
+    cout << endl;
+
+    //Retrieve the hours, minutes, and seconds of the object myClock.
+    myClock.getTime(hours, minutes, seconds);
+
+    //Output the vallue of hours, minutes, and seconds
+    cout << "hours = " << hours << ", minutes = " 
+            << minutes << ", seconds = "    
+            << seconds << endl;
     return 0;
 }
 
-void clockType::setTime(int hours, int minutes, int seconds)
+void clockType::setTime(int hours, int minutes, int seconds) //Mutator function
 {
     if (0 <= hours && hours < 24)
         hr = hours;
@@ -43,7 +93,7 @@ void clockType::setTime(int hours, int minutes, int seconds)
     else sec = 0;
 }
  
-void clockType::getTime(int& hours, int& minutes, int& seconds) const
+void clockType::getTime(int& hours, int& minutes, int& seconds) const //Accessor function
 {
     hours = hr;
     minutes = min;
@@ -61,6 +111,8 @@ void clockType::printTime() const
     if (sec < 10)
         cout << "0";
     cout << sec;
+
+    
 }
 
 void clockType::incrementHours()
@@ -97,6 +149,7 @@ bool clockType::equalTime(const clockType& otherClock) const
             && min == otherClock.min 
             && sec == otherClock.sec);
 }
+
 
 
 
