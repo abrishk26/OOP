@@ -11,6 +11,8 @@ public:
     void incrementMinutes();
     void incrementHours();
     bool equalTime(const clockType&) const;
+    clockType(int = 0, int = 0, int = 0); //Constructor with parameter
+    //clockType(); //Default constructor
 
 private:
     int hr;
@@ -21,8 +23,8 @@ private:
 
 int main()
 {
-    clockType myClock; //class object 1
-    clockType yourClock; //class object 2
+    clockType myClock(5, 12, 40); //class object 1 with constructor
+    clockType yourClock(2, 59, 59); //class object 2
 
     int hours;
     int minutes;
@@ -47,7 +49,7 @@ int main()
     if (myClock.equalTime(yourClock))
         cout << "Both times are equal." << endl;
     else
-        cout << "The two times are not equla" << endl;
+        cout << "The two times are not equal" << endl;
 
     cout << "Enter the hours, minutes, and seconds: ";
     cin >> hours >> minutes >> seconds;
@@ -149,6 +151,15 @@ bool clockType::equalTime(const clockType& otherClock) const
             && min == otherClock.min 
             && sec == otherClock.sec);
 }
+
+clockType::clockType(int hours, int minutes, int seconds)
+{
+    setTime(hours, minutes, seconds);
+}
+
+
+
+
 
 
 
